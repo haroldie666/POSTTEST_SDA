@@ -1,7 +1,7 @@
 #include <iostream>
-#include <cstdlib>
+#include <cstdlib> // untuk membersihkan terminal
 #include <cmath>
-#include <algorithm>
+#include <algorithm> // untuk min()
 #include <limits>
 #include <tabulate/table.hpp>
 
@@ -32,7 +32,7 @@ int top = -1;
 Penumpang queueAntrian[MAX];
 int front = -1, rear = -1; 
 
-void clearing() {
+void clearing() { // clearing terminal yang portabel
 #ifdef _WIN32
     system("cls");
 #else
@@ -40,7 +40,7 @@ void clearing() {
 #endif
 }
 
-string toLower(string s) {
+string toLower(string s) { // fungsi agar tidak case-sensitive
     transform(s.begin(), s.end(), s.begin(), ::tolower);
     return s;
 }
@@ -190,7 +190,7 @@ void pushRiwayat(Penumpang* p) {
     *(stackRiwayat + top) = *p; 
 }
 
-void popRiwayat() {
+void popRiwayat() { // untuk menghapus dan mengembalikan transaksi terakhir yang diproses
     if (isStackEmpty()) {
         cout << "Tidak ada riwayat transaksi (underflow)" << endl; 
         return;
@@ -200,7 +200,7 @@ void popRiwayat() {
     cout << "Transaksi terakhir atas nama " << p.penumpang << " berhasil dihapus dari riwayat" << endl;
 }
 
-void tampilkanRiwayat() {
+void tampilkanRiwayat() { // menampilkan semua riwayat transaksi yang sudah diproses
     cout << "\n--- DAFTAR RIWAYAT TRANSAKSI ---" << endl;
     if (isStackEmpty()) {
         cout << "Riwayat transaksi kosong" << endl;
@@ -218,7 +218,7 @@ bool isQueueEmpty() {
 bool isQueueFull() { 
     return rear == MAX - 1; } 
 
-void enqueueAntrian(Penumpang* p) {
+void enqueueAntrian(Penumpang* p) { 
     if (isQueueFull()) {
         cout << "Antrian penuh (overflow)" << endl; 
         return;
@@ -229,7 +229,7 @@ void enqueueAntrian(Penumpang* p) {
     cout << "Penumpang " << p->penumpang << " berhasil masuk antrian" << endl;
 }
 
-void dequeueAntrian() {
+void dequeueAntrian() { // menggunakan dequeue untuk memproses tiket dan push ke stack riwayat
     if (isQueueEmpty()) {
         cout << "Antrian kosong (underflow)" << endl; 
         return;
@@ -244,7 +244,7 @@ void dequeueAntrian() {
     if (isQueueEmpty()) front = rear = -1;
 }
 
-void readAntrian() {
+void readAntrian() { // menampilkan semua antrian yang sedang menunggu diproses
     cout << "\n--- DAFTAR ANTRIAN PEMBELIAN TIKET ---" << endl;
     if (isQueueEmpty()) {
         cout << "Belum ada antrian" << endl;
