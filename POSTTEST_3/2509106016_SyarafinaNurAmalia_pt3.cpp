@@ -8,7 +8,7 @@
 using namespace std;
 using namespace tabulate;
 
-#define MAX 100 
+#define MAX 100 // batas kapasitas stack dan queue
 
 struct Kereta {
     int nomor;
